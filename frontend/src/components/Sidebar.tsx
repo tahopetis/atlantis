@@ -3,10 +3,25 @@ import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 
 export function Sidebar() {
+  const handleNewDiagram = () => {
+    // Navigate to editor with a new diagram
+    window.location.href = '/editor'
+  }
+
+  const handleDiagramClick = (diagramName: string) => {
+    // Placeholder for opening specific diagrams
+    alert(`Opening diagram: ${diagramName}`)
+  }
+
   return (
     <aside className="w-64 border-r bg-muted/30 flex flex-col">
       <div className="p-4">
-        <Button className="w-full justify-start" variant="default">
+        <Button
+          className="w-full justify-start"
+          variant="default"
+          onClick={handleNewDiagram}
+          data-testid="new-diagram-button"
+        >
           <Plus className="h-4 w-4 mr-2" />
           New Diagram
         </Button>
@@ -23,15 +38,27 @@ export function Sidebar() {
             </div>
 
             <div className="space-y-1 pl-6">
-              <div className="flex items-center space-x-2 p-2 rounded hover:bg-muted cursor-pointer">
+              <div
+                className="flex items-center space-x-2 p-2 rounded hover:bg-muted cursor-pointer"
+                onClick={() => handleDiagramClick('System Architecture')}
+                data-testid="diagram-system-architecture"
+              >
                 <FileText className="h-4 w-4" />
                 <span className="text-sm">System Architecture</span>
               </div>
-              <div className="flex items-center space-x-2 p-2 rounded hover:bg-muted cursor-pointer">
+              <div
+                className="flex items-center space-x-2 p-2 rounded hover:bg-muted cursor-pointer"
+                onClick={() => handleDiagramClick('Database Schema')}
+                data-testid="diagram-database-schema"
+              >
                 <FileText className="h-4 w-4" />
                 <span className="text-sm">Database Schema</span>
               </div>
-              <div className="flex items-center space-x-2 p-2 rounded hover:bg-muted cursor-pointer">
+              <div
+                className="flex items-center space-x-2 p-2 rounded hover:bg-muted cursor-pointer"
+                onClick={() => handleDiagramClick('API Flow')}
+                data-testid="diagram-api-flow"
+              >
                 <FileText className="h-4 w-4" />
                 <span className="text-sm">API Flow</span>
               </div>

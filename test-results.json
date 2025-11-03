@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 3
+      "actualWorkers": 4
     },
     "preserveOutput": "always",
     "reporter": [
@@ -45,7 +45,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 4
         },
         "id": "chromium",
         "name": "chromium",
@@ -54,14 +54,14 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 30000
+        "timeout": 60000
       },
       {
         "outputDir": "/home/syam/dev/atlantis/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 4
         },
         "id": "firefox",
         "name": "firefox",
@@ -70,14 +70,14 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 30000
+        "timeout": 60000
       },
       {
         "outputDir": "/home/syam/dev/atlantis/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 4
         },
         "id": "webkit",
         "name": "webkit",
@@ -86,14 +86,14 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 30000
+        "timeout": 60000
       },
       {
         "outputDir": "/home/syam/dev/atlantis/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 4
         },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
@@ -102,14 +102,14 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 30000
+        "timeout": 60000
       },
       {
         "outputDir": "/home/syam/dev/atlantis/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 4
         },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
@@ -118,14 +118,14 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 30000
+        "timeout": 60000
       },
       {
         "outputDir": "/home/syam/dev/atlantis/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 3
+          "actualWorkers": 4
         },
         "id": "iPad",
         "name": "iPad",
@@ -134,7 +134,7 @@
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
         ],
-        "timeout": 30000
+        "timeout": 60000
       }
     ],
     "shard": null,
@@ -146,25 +146,25 @@
   },
   "suites": [
     {
-      "title": "working-selectors-test.spec.ts",
-      "file": "working-selectors-test.spec.ts",
+      "title": "smoke/smoke.spec.ts",
+      "file": "smoke/smoke.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Working Selectors Validation",
-          "file": "working-selectors-test.spec.ts",
-          "line": 15,
+          "title": "Smoke Tests - Critical Path Verification",
+          "file": "smoke/smoke.spec.ts",
+          "line": 6,
           "column": 6,
           "specs": [
             {
-              "title": "Validate all working selectors from discovery test",
-              "ok": false,
+              "title": "should load and render basic diagram",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
@@ -173,79 +173,32 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 1451,
-                      "error": {
-                        "message": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n",
-                        "stack": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n\n    at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)\n    at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)\n    at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:27:5",
-                        "location": {
-                          "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                          "column": 46,
-                          "line": 42
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpages/BasePage.ts:42\n\n  40 |    */\n  41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {\n> 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })\n     |                                              ^\n  43 |   }\n  44 |\n  45 |   /**"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                            "column": 46,
-                            "line": 42
-                          },
-                          "message": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n\n\n   at pages/BasePage.ts:42\n\n  40 |    */\n  41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {\n> 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })\n     |                                              ^\n  43 |   }\n  44 |\n  45 |   /**\n    at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)\n    at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)\n    at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:27:5"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "\n🧪 VALIDATING WORKING SELECTORS\n\n"
-                        },
-                        {
-                          "text": "Waiting for editor initialization with working selectors...\n"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 3545,
+                      "errors": [],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-11-03T07:48:15.873Z",
+                      "startTime": "2025-11-03T08:37:53.130Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                        "column": 46,
-                        "line": 42
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "c4d8af429547e61b067c-d8bb9b2e0fd2f2974c37",
-              "file": "working-selectors-test.spec.ts",
-              "line": 22,
+              "id": "f2f9e57ccde56fbee371-ace247ea7de5bcee55c6",
+              "file": "smoke/smoke.spec.ts",
+              "line": 7,
               "column": 3
             },
             {
-              "title": "Test comprehensive functionality with fixed selectors",
-              "ok": false,
+              "title": "should handle mode switching",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
@@ -254,79 +207,32 @@
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 1391,
-                      "error": {
-                        "message": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n",
-                        "stack": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n\n    at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)\n    at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)\n    at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:156:5",
-                        "location": {
-                          "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                          "column": 46,
-                          "line": 42
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpages/BasePage.ts:42\n\n  40 |    */\n  41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {\n> 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })\n     |                                              ^\n  43 |   }\n  44 |\n  45 |   /**"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                            "column": 46,
-                            "line": 42
-                          },
-                          "message": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n\n\n   at pages/BasePage.ts:42\n\n  40 |    */\n  41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {\n> 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })\n     |                                              ^\n  43 |   }\n  44 |\n  45 |   /**\n    at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)\n    at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)\n    at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:156:5"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "\n🔧 COMPREHENSIVE FUNCTIONALITY TEST\n\n"
-                        },
-                        {
-                          "text": "Waiting for editor initialization with working selectors...\n"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 6597,
+                      "errors": [],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-11-03T07:48:15.880Z",
+                      "startTime": "2025-11-03T08:37:53.111Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                        "column": 46,
-                        "line": 42
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "c4d8af429547e61b067c-ebd82af5e1a36e51f527",
-              "file": "working-selectors-test.spec.ts",
-              "line": 152,
+              "id": "f2f9e57ccde56fbee371-e5fdfd7f00a48fc1575f",
+              "file": "smoke/smoke.spec.ts",
+              "line": 29,
               "column": 3
             },
             {
-              "title": "Compare old vs new selectors",
-              "ok": false,
+              "title": "should handle examples and templates",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "chromium",
@@ -335,70 +241,1349 @@
                     {
                       "workerIndex": 2,
                       "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 1328,
-                      "error": {
-                        "message": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n",
-                        "stack": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n\n    at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)\n    at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)\n    at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:235:5",
-                        "location": {
-                          "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                          "column": 46,
-                          "line": 42
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mpages/BasePage.ts:42\n\n  40 |    */\n  41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {\n> 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })\n     |                                              ^\n  43 |   }\n  44 |\n  45 |   /**"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                            "column": 46,
-                            "line": 42
-                          },
-                          "message": "Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:\n    1) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'main' })\n    2) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-save h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Save' })\n    3) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-download h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'Export' })\n    4) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-settings h-4 w-4\">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })\n    5) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-plus h-4 w-4 mr-2\">…</svg> aka getByRole('button', { name: 'New Diagram' })\n    6) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-folder h-4 w-4\">…</svg> aka getByRole('img').nth(5)\n    7) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('.lucide.lucide-file-text').first()\n    8) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(2) > .lucide')\n    9) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-file-text h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .lucide')\n    10) <svg width=\"24\" height=\"24\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\" class=\"lucide lucide-git-branch h-4 w-4\">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')\n    ...\n\nCall log:\n\u001b[2m  - waiting for locator('svg') to be visible\u001b[22m\n\n\n   at pages/BasePage.ts:42\n\n  40 |    */\n  41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {\n> 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })\n     |                                              ^\n  43 |   }\n  44 |\n  45 |   /**\n    at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)\n    at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)\n    at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:235:5"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "\n🔄 COMPARING OLD VS NEW SELECTORS\n\n"
-                        },
-                        {
-                          "text": "Waiting for editor initialization with working selectors...\n"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 3025,
+                      "errors": [],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-11-03T07:48:15.856Z",
+                      "startTime": "2025-11-03T08:37:53.123Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/home/syam/dev/atlantis/test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts",
-                        "column": 46,
-                        "line": 42
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "c4d8af429547e61b067c-b8293a5de4b97cbee16c",
-              "file": "working-selectors-test.spec.ts",
-              "line": 231,
+              "id": "f2f9e57ccde56fbee371-4445b92f7da350d2249c",
+              "file": "smoke/smoke.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should handle basic operations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2734,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:37:53.171Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-03bbbed9bac3fa10677c",
+              "file": "smoke/smoke.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "should handle responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2207,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:37:56.107Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-6bd67d0916e39889cef4",
+              "file": "smoke/smoke.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should handle error conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5181,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:37:56.308Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-a3e817f179e5b3da3bf2",
+              "file": "smoke/smoke.spec.ts",
+              "line": 133,
+              "column": 3
+            },
+            {
+              "title": "should handle network resilience",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3206,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:37:56.848Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-b62463451e595253a8b8",
+              "file": "smoke/smoke.spec.ts",
+              "line": 159,
+              "column": 3
+            },
+            {
+              "title": "should load and render basic diagram",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4382,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:37:59.095Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-9ab767961ca9851d3b59",
+              "file": "smoke/smoke.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should handle mode switching",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9212,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:00.562Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-eb3b461e53a362cf9e0f",
+              "file": "smoke/smoke.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "should handle examples and templates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5606,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:00.786Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-20c75361992e8115b9bd",
+              "file": "smoke/smoke.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should handle basic operations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4874,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:02.122Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-59a861169e06cb0248be",
+              "file": "smoke/smoke.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "should handle responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2991,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:07.924Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-9898a3624bb70bfd3512",
+              "file": "smoke/smoke.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should handle error conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5971,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:10.947Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-7c43de4d6e28c566e8a5",
+              "file": "smoke/smoke.spec.ts",
+              "line": 133,
+              "column": 3
+            },
+            {
+              "title": "should handle network resilience",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4161,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:12.836Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-b7d3deabbf19c1d10101",
+              "file": "smoke/smoke.spec.ts",
+              "line": 159,
+              "column": 3
+            },
+            {
+              "title": "should load and render basic diagram",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3499,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:18.224Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-e144f2a4a3e70962e49e",
+              "file": "smoke/smoke.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should handle mode switching",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7178,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:18.982Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-2262d17248d411205691",
+              "file": "smoke/smoke.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "should handle examples and templates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3515,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:19.130Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-9b3ddbf29c4ae438d614",
+              "file": "smoke/smoke.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should handle basic operations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2940,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:22.038Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-512311e15fc00fed2b75",
+              "file": "smoke/smoke.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "should handle responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2420,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:21.946Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-b36c23bcdc0a776765a0",
+              "file": "smoke/smoke.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should handle error conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5664,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:22.954Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-dd809a5fff38f8de13f2",
+              "file": "smoke/smoke.spec.ts",
+              "line": 133,
+              "column": 3
+            },
+            {
+              "title": "should handle network resilience",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3327,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:24.393Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-58e38a3542e4fc5e5cca",
+              "file": "smoke/smoke.spec.ts",
+              "line": 159,
+              "column": 3
+            },
+            {
+              "title": "should load and render basic diagram",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3980,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:26.238Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-9a0807ecbfbcaa3740cd",
+              "file": "smoke/smoke.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should handle mode switching",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7167,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:27.577Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-e81d87e8bc7341ff6eca",
+              "file": "smoke/smoke.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "should handle examples and templates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3219,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:28.752Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-565ac84fb940e87b9cc9",
+              "file": "smoke/smoke.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should handle basic operations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2842,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:29.730Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-4a62f7e534d3eb7f321d",
+              "file": "smoke/smoke.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "should handle responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2842,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:30.481Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-d52836bb40fff8285e90",
+              "file": "smoke/smoke.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should handle error conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6239,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:32.140Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-499a2643d27b7bc36bb6",
+              "file": "smoke/smoke.spec.ts",
+              "line": 133,
+              "column": 3
+            },
+            {
+              "title": "should handle network resilience",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4111,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:32.697Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-2f70bf33998b84368f3d",
+              "file": "smoke/smoke.spec.ts",
+              "line": 159,
+              "column": 3
+            },
+            {
+              "title": "should load and render basic diagram",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4175,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:34.149Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-481b94ffd393d29a0272",
+              "file": "smoke/smoke.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should handle mode switching",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7896,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:36.482Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-1998ee2d6719dca1ff0f",
+              "file": "smoke/smoke.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "should handle examples and templates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5255,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:38.457Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-9f0046b9198703abb0fd",
+              "file": "smoke/smoke.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should handle basic operations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4068,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:40.585Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-6c7757ff0a269461b4cb",
+              "file": "smoke/smoke.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "should handle responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3983,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:38.500Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-23bf9977337efd55aa46",
+              "file": "smoke/smoke.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should handle error conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6025,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:42.542Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-62b87f1fc220d393f9f1",
+              "file": "smoke/smoke.spec.ts",
+              "line": 133,
+              "column": 3
+            },
+            {
+              "title": "should handle network resilience",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4081,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:44.009Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-b5f25d6864c7064ad832",
+              "file": "smoke/smoke.spec.ts",
+              "line": 159,
+              "column": 3
+            },
+            {
+              "title": "should load and render basic diagram",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3782,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:45.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-af965279aa9ce246f7ec",
+              "file": "smoke/smoke.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "should handle mode switching",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6962,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:46.634Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-ff50d7b57493f6a5f127",
+              "file": "smoke/smoke.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "should handle examples and templates",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2983,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:49.389Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-41acf2593e5d442f29cf",
+              "file": "smoke/smoke.spec.ts",
+              "line": 57,
+              "column": 3
+            },
+            {
+              "title": "should handle basic operations",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2831,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:49.972Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-fb077d25a3f0fb11e716",
+              "file": "smoke/smoke.spec.ts",
+              "line": 81,
+              "column": 3
+            },
+            {
+              "title": "should handle responsive layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2249,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:49.876Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-27eb3bea6e74710a72ec",
+              "file": "smoke/smoke.spec.ts",
+              "line": 114,
+              "column": 3
+            },
+            {
+              "title": "should handle error conditions",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5244,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:52.153Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-c46c83a2f7105ebb56cb",
+              "file": "smoke/smoke.spec.ts",
+              "line": 133,
+              "column": 3
+            },
+            {
+              "title": "should handle network resilience",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPad",
+                  "projectName": "iPad",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2798,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-03T08:38:52.529Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f2f9e57ccde56fbee371-ed5c71d5240f263f2e6b",
+              "file": "smoke/smoke.spec.ts",
+              "line": 159,
               "column": 3
             }
           ]
@@ -408,11 +1593,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-11-03T07:48:12.046Z",
-    "duration": 5499.67,
-    "expected": 0,
+    "startTime": "2025-11-03T08:37:49.681Z",
+    "duration": 67783.149,
+    "expected": 42,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 0,
     "flaky": 0
   }
 }

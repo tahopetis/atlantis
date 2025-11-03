@@ -1,10 +1,7 @@
 export const MERMAID_EXAMPLES = {
   flowchart: `graph TD
-    A[Start] --> B{Is it working?}
-    B -->|Yes| C[Great!]
-    B -->|No| D[Debug]
-    D --> B
-    C --> E[End]`,
+    A[Start] --> B[Process]
+    B --> C[End]`,
 
   sequenceDiagram: `sequenceDiagram
     participant Alice

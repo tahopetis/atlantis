@@ -3,6 +3,11 @@ import { FileText, GitBranch, Users, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function HomePage() {
+  const handleBrowseExamples = () => {
+    // Navigate to editor with a default example
+    window.location.href = '/editor'
+  }
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -21,7 +26,13 @@ export function HomePage() {
               Create New Diagram
             </Button>
           </Link>
-          <Button variant="outline" size="lg" className="w-full sm:w-auto">
+          <Button
+            variant="outline"
+            size="lg"
+            className="w-full sm:w-auto"
+            onClick={handleBrowseExamples}
+            data-testid="browse-examples-button"
+          >
             <FileText className="h-4 w-4 mr-2" />
             Browse Examples
           </Button>

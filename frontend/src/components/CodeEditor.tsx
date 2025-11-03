@@ -3,21 +3,15 @@ import { CheckCircle, AlertCircle, Play, Copy, Download } from 'lucide-react'
 import { useDiagramStore } from '@/stores/useDiagramStore'
 
 const defaultMermaidCode = `graph TD
-    A[Start] --> B{Is it working?}
-    B -->|Yes| C[Great!]
-    B -->|No| D[Debug]
-    D --> B
-    C --> E[End]`
+    A[Start] --> B[Process]
+    B --> C[End]`
 
 const exampleDiagrams = [
   {
     name: 'Flowchart',
     code: `graph TD
-    A[Start] --> B{Is it working?}
-    B -->|Yes| C[Great!]
-    B -->|No| D[Debug]
-    D --> B
-    C --> E[End]`
+    A[Start] --> B[Process]
+    B --> C[End]`
   },
   {
     name: 'Sequence Diagram',
@@ -147,7 +141,12 @@ export function CodeEditor() {
           </div>
           <div className="flex items-center space-x-2">
             {/* Status indicator */}
-            <div className="flex items-center space-x-1 text-sm">
+            <div
+              data-testid="status-indicator"
+              className="flex items-center space-x-1 text-sm"
+              role="status"
+              aria-live="polite"
+            >
               {isLoading ? (
                 <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
               ) : isValid ? (
@@ -155,7 +154,7 @@ export function CodeEditor() {
               ) : (
                 <AlertCircle className="w-4 h-4 text-destructive" />
               )}
-              <span className="text-muted-foreground">
+              <span data-testid="status-text" className="text-muted-foreground">
                 {isLoading ? 'Validating...' : isValid ? 'Valid' : 'Error'}
               </span>
             </div>
@@ -167,8 +166,11 @@ export function CodeEditor() {
       <div className="px-4 py-2 border-b bg-muted/30 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <button
+            data-testid="examples-button"
             onClick={() => setShowExamples(!showExamples)}
             className="px-3 py-1.5 text-sm bg-background hover:bg-muted rounded flex items-center space-x-1"
+            aria-label="Toggle examples dropdown"
+            aria-expanded={showExamples}
           >
             <Play className="w-4 h-4" />
             <span>Examples</span>
@@ -176,18 +178,22 @@ export function CodeEditor() {
         </div>
         <div className="flex items-center space-x-2">
           <button
+            data-testid="copy-button"
             onClick={handleCopyCode}
             disabled={!code.trim()}
             className="p-1.5 text-sm bg-background hover:bg-muted rounded disabled:opacity-50 disabled:cursor-not-allowed"
             title="Copy code"
+            aria-label="Copy diagram code to clipboard"
           >
             <Copy className="w-4 h-4" />
           </button>
           <button
+            data-testid="download-button"
             onClick={handleDownloadCode}
             disabled={!code.trim()}
             className="p-1.5 text-sm bg-background hover:bg-muted rounded disabled:opacity-50 disabled:cursor-not-allowed"
             title="Download code"
+            aria-label="Download diagram code as .mmd file"
           >
             <Download className="w-4 h-4" />
           </button>
@@ -196,15 +202,22 @@ export function CodeEditor() {
 
       {/* Examples dropdown */}
       {showExamples && (
-        <div className="border-b bg-background">
+        <div
+          data-testid="examples-dropdown"
+          className="border-b bg-background"
+          role="region"
+          aria-label="Example diagrams"
+        >
           <div className="p-4">
             <h4 className="text-sm font-medium mb-3">Example Diagrams</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {exampleDiagrams.map((example, index) => (
                 <button
                   key={index}
+                  data-testid={`example-${example.name.toLowerCase().replace(/\s+/g, '-')}`}
                   onClick={() => handleExampleSelect(example.code)}
                   className="text-left p-3 bg-muted hover:bg-muted/80 rounded-lg transition-colors"
+                  aria-label={`Load ${example.name} example`}
                 >
                   <div className="font-medium text-sm mb-1">{example.name}</div>
                   <div className="text-xs text-muted-foreground font-mono truncate">
@@ -218,13 +231,15 @@ export function CodeEditor() {
       )}
 
       {/* Code editor */}
-      <div className="flex-1 p-4 relative">
+      <div data-testid="code-editor" className="flex-1 p-4 relative">
         <textarea
+          data-testid="code-textarea"
           value={code}
           onChange={handleCodeChange}
           className="w-full h-full p-4 font-mono text-sm bg-muted border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-ring"
           placeholder="Enter Mermaid diagram code here..."
           spellCheck={false}
+          aria-label="Mermaid diagram code editor"
           style={{
             minHeight: '200px',
             lineHeight: '1.5'

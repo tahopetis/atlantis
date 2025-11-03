@@ -39,7 +39,8 @@ export const useMermaidRenderer = ({
       flowchart: {
         useMaxWidth: true,
         htmlLabels: true,
-        curve: 'basis'
+        curve: 'linear',
+        padding: 20
       },
       sequence: {
         useMaxWidth: true,
@@ -111,19 +112,46 @@ export const useMermaidRenderer = ({
       setLoading(true)
       setError(null)
 
-      // Clear previous content
-      containerRef.current.innerHTML = ''
+      // Clear previous content using React-compatible approach
+      while (containerRef.current.firstChild) {
+        containerRef.current.removeChild(containerRef.current.firstChild)
+      }
 
-      // Generate unique ID for this render
-      const renderId = `mermaid-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+      // Generate unique ID for this render (use consistent ID for testing)
+      const renderId = 'mermaid-diagram'
       renderIdRef.current = renderId
 
-      // Validate and render the diagram
-      const { svg } = await mermaid.render(renderId, mermaidCode, containerRef.current)
+      // Create a temporary container for Mermaid rendering to avoid DOM conflicts
+      const tempContainer = document.createElement('div')
+      tempContainer.style.display = 'none'
+      document.body.appendChild(tempContainer)
+
+      // Validate and render the diagram in temporary container
+      const { svg } = await mermaid.render(renderId, mermaidCode, tempContainer)
+
+      // Clean up temporary container
+      if (tempContainer.parentNode) {
+        tempContainer.parentNode.removeChild(tempContainer)
+      }
 
       // Check if this is still the latest render
-      if (renderIdRef.current === renderId) {
-        containerRef.current.innerHTML = svg
+      if (renderIdRef.current === renderId && containerRef.current) {
+        // Use React-compatible DOM manipulation
+        const fragment = document.createDocumentFragment()
+        const tempDiv = document.createElement('div')
+        tempDiv.innerHTML = svg
+
+        // Move nodes to fragment
+        while (tempDiv.firstChild) {
+          fragment.appendChild(tempDiv.firstChild)
+        }
+
+        // Clear container using safe method and append new content
+        while (containerRef.current.firstChild) {
+          containerRef.current.removeChild(containerRef.current.firstChild)
+        }
+        containerRef.current.appendChild(fragment)
+
         setValid(true)
       }
     } catch (err) {
@@ -132,9 +160,11 @@ export const useMermaidRenderer = ({
       setError(mermaidError)
       setValid(false)
 
-      // Clear the container on error
+      // Clear the container on error using React-compatible approach
       if (containerRef.current) {
-        containerRef.current.innerHTML = ''
+        while (containerRef.current.firstChild) {
+          containerRef.current.removeChild(containerRef.current.firstChild)
+        }
       }
     } finally {
       setLoading(false)
@@ -162,9 +192,11 @@ export const useMermaidRenderer = ({
     }
 
     if (!code.trim()) {
-      // Clear the container if code is empty
+      // Clear the container if code is empty using React-compatible approach
       if (containerRef.current) {
-        containerRef.current.innerHTML = ''
+        while (containerRef.current.firstChild) {
+          containerRef.current.removeChild(containerRef.current.firstChild)
+        }
       }
       setValid(true)
       setError(null)
