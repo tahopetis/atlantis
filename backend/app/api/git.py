@@ -1,6 +1,23 @@
-from fastapi import APIRouter, HTTPException
-from typing import List, Optional
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, Depends
+from typing import List, Optional, Dict, Any
+from pydantic import BaseModel, Field
+from datetime import datetime
+from sqlalchemy.orm import Session
+
+from app.services.git_service import (
+    git_service,
+    GitRepositoryInfo,
+    GitCommitInfo,
+    GitServiceError,
+    RepositoryNotFoundError,
+    InvalidRepositoryError,
+    GitOperationError,
+    SecurityError
+)
+from app.core.database import get_db
+from app.services.git_token_service import GitTokenService
+from app.middleware.auth import get_current_active_user
+from app.models.user import User
 
 router = APIRouter()
 
@@ -12,13 +29,19 @@ class GitRepository(BaseModel):
     local_path: str
     default_branch: str = "main"
     current_branch: str = "main"
+    is_bare: bool = False
+    is_dirty: bool = False
+    last_commit_hash: Optional[str] = None
+    last_commit_message: Optional[str] = None
+    last_commit_author: Optional[str] = None
+    last_commit_date: Optional[datetime] = None
 
 
 class GitCommit(BaseModel):
     hash: str
     message: str
     author: str
-    date: str
+    date: datetime
     files: List[str]
 
 
@@ -28,86 +51,317 @@ class GitOperationResponse(BaseModel):
     data: Optional[dict] = None
 
 
-# Temporary in-memory storage
-repositories_db = {}
+class CreateRepositoryRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=100, description="Repository name")
+    url: Optional[str] = Field(None, description="Git URL to clone (optional for new repo)")
+    init_bare: bool = Field(False, description="Initialize as bare repository")
+
+
+class CommitRequest(BaseModel):
+    message: str = Field(..., min_length=1, max_length=1000, description="Commit message")
+    files: Optional[List[str]] = Field(None, description="Files to commit (empty for all changes)")
+    author_name: Optional[str] = Field(None, description="Author name")
+    author_email: Optional[str] = Field(None, description="Author email")
+
+
+class PushPullRequest(BaseModel):
+    remote: str = Field("origin", description="Remote name")
+    branch: Optional[str] = Field(None, description="Branch name")
+    username: Optional[str] = Field(None, description="Username for authentication")
+    password: Optional[str] = Field(None, description="Password for authentication")
+    token: Optional[str] = Field(None, description="Token for authentication")
+
+
+class CreateBranchRequest(BaseModel):
+    branch_name: str = Field(..., min_length=1, max_length=100, description="New branch name")
+    base_branch: Optional[str] = Field(None, description="Base branch to create from")
+
+
+class FileOperationRequest(BaseModel):
+    file_path: str = Field(..., description="File path")
+    content: str = Field(..., description="File content")
+
+
+def handle_git_error(func):
+    """Decorator to handle Git service errors and convert to HTTP exceptions"""
+    async def wrapper(*args, **kwargs):
+        try:
+            return await func(*args, **kwargs)
+        except SecurityError as e:
+            raise HTTPException(status_code=403, detail=str(e))
+        except RepositoryNotFoundError as e:
+            raise HTTPException(status_code=404, detail=str(e))
+        except InvalidRepositoryError as e:
+            raise HTTPException(status_code=400, detail=str(e))
+        except GitOperationError as e:
+            raise HTTPException(status_code=422, detail=str(e))
+        except GitServiceError as e:
+            raise HTTPException(status_code=500, detail=str(e))
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+    return wrapper
 
 
 @router.get("/repositories", response_model=List[GitRepository])
-async def get_repositories():
+async def get_repositories(
+    current_user: User = Depends(get_current_active_user)
+):
     """Get all Git repositories"""
-    return list(repositories_db.values())
+    try:
+        repo_infos = git_service.list_repositories()
+        return [
+            GitRepository(
+                id=repo.id,
+                name=repo.name,
+                url=repo.url,
+                local_path=repo.local_path,
+                default_branch=repo.default_branch,
+                current_branch=repo.current_branch,
+                is_bare=repo.is_bare,
+                is_dirty=repo.is_dirty,
+                last_commit_hash=repo.last_commit_hash,
+                last_commit_message=repo.last_commit_message,
+                last_commit_author=repo.last_commit_author,
+                last_commit_date=repo.last_commit_date
+            )
+            for repo in repo_infos
+        ]
+    except SecurityError as e:
+        raise HTTPException(status_code=403, detail=str(e))
+    except RepositoryNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except InvalidRepositoryError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except GitOperationError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+    except GitServiceError as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @router.post("/repositories", response_model=GitOperationResponse)
-async def add_repository(repo_data: dict):
-    """Add a new Git repository"""
-    import uuid
-    repo = GitRepository(
-        id=str(uuid.uuid4()),
-        name=repo_data.get("name"),
-        url=repo_data.get("url"),
-        local_path=repo_data.get("local_path", f"./repos/{repo_data.get('name')}")
+@handle_git_error
+async def create_repository(
+    request: CreateRepositoryRequest,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    """Create a new Git repository"""
+    repo_info = git_service.create_repository(
+        name=request.name,
+        url=request.url,
+        init_bare=request.init_bare
     )
-    repositories_db[repo.id] = repo
+
+    repo = GitRepository(
+        id=repo_info.id,
+        name=repo_info.name,
+        url=request.url or "",
+        local_path=repo_info.local_path,
+        default_branch=repo_info.default_branch,
+        current_branch=repo_info.current_branch,
+        is_bare=repo_info.is_bare,
+        is_dirty=repo_info.is_dirty,
+        last_commit_hash=repo_info.last_commit_hash,
+        last_commit_message=repo_info.last_commit_message,
+        last_commit_author=repo_info.last_commit_author,
+        last_commit_date=repo_info.last_commit_date
+    )
+
     return GitOperationResponse(
         success=True,
-        message="Repository added successfully",
+        message="Repository created successfully",
         data=repo.dict()
     )
 
 
-@router.get("/repositories/{repo_id}/commits", response_model=List[GitCommit])
-async def get_commits(repo_id: str, branch: Optional[str] = None):
-    """Get commits for a repository"""
-    if repo_id not in repositories_db:
-        raise HTTPException(status_code=404, detail="Repository not found")
+@router.get("/repositories/{repo_id}", response_model=GitRepository)
+@handle_git_error
+async def get_repository(repo_id: str):
+    """Get repository information"""
+    repo_info = git_service.get_repository_info(repo_id)
 
-    # Placeholder data - actual Git operations will be implemented later
-    return [
-        GitCommit(
-            hash="abc123",
-            message="Initial commit",
-            author="John Doe",
-            date="2024-01-01T00:00:00Z",
-            files=["diagram1.mmd", "diagram2.mmd"]
-        )
-    ]
+    return GitRepository(
+        id=repo_info.id,
+        name=repo_info.name,
+        url="",  # URL is not stored in git service
+        local_path=repo_info.local_path,
+        default_branch=repo_info.default_branch,
+        current_branch=repo_info.current_branch,
+        is_bare=repo_info.is_bare,
+        is_dirty=repo_info.is_dirty,
+        last_commit_hash=repo_info.last_commit_hash,
+        last_commit_message=repo_info.last_commit_message,
+        last_commit_author=repo_info.last_commit_author,
+        last_commit_date=repo_info.last_commit_date
+    )
 
 
-@router.post("/repositories/{repo_id}/commit", response_model=GitOperationResponse)
-async def commit_changes(repo_id: str, commit_data: dict):
-    """Commit changes to a repository"""
-    if repo_id not in repositories_db:
-        raise HTTPException(status_code=404, detail="Repository not found")
+@router.delete("/repositories/{repo_id}", response_model=GitOperationResponse)
+@handle_git_error
+async def delete_repository(repo_id: str):
+    """Delete a repository"""
+    git_service.delete_repository(repo_id)
 
     return GitOperationResponse(
         success=True,
-        message=f"Committed {len(commit_data.get('files', []))} files",
-        data={"commit_hash": "def456"}
+        message="Repository deleted successfully"
+    )
+
+
+@router.get("/repositories/{repo_id}/commits", response_model=List[GitCommit])
+@handle_git_error
+async def get_commits(repo_id: str, branch: Optional[str] = None, limit: int = 50, skip: int = 0):
+    """Get commits for a repository"""
+    commits = git_service.get_commits(repo_id, branch=branch, limit=limit, skip=skip)
+
+    return [
+        GitCommit(
+            hash=commit.hash,
+            message=commit.message,
+            author=commit.author,
+            date=commit.date,
+            files=commit.files
+        )
+        for commit in commits
+    ]
+
+
+@router.get("/repositories/{repo_id}/commits/{commit_hash}", response_model=GitCommit)
+@handle_git_error
+async def get_commit_details(repo_id: str, commit_hash: str):
+    """Get detailed information about a specific commit"""
+    commit = git_service.get_commit_details(repo_id, commit_hash)
+
+    return GitCommit(
+        hash=commit.hash,
+        message=commit.message,
+        author=commit.author,
+        date=commit.date,
+        files=commit.files
+    )
+
+
+@router.post("/repositories/{repo_id}/commit", response_model=GitOperationResponse)
+@handle_git_error
+async def commit_changes(repo_id: str, request: CommitRequest):
+    """Commit changes to a repository"""
+    commit_hash = git_service.create_commit(
+        repo_id=repo_id,
+        message=request.message,
+        files=request.files,
+        author_name=request.author_name,
+        author_email=request.author_email
+    )
+
+    return GitOperationResponse(
+        success=True,
+        message=f"Changes committed successfully",
+        data={"commit_hash": commit_hash}
+    )
+
+
+@router.get("/repositories/{repo_id}/status", response_model=Dict[str, Any])
+@handle_git_error
+async def get_repository_status(repo_id: str):
+    """Get repository status"""
+    status = git_service.get_status(repo_id)
+    return status
+
+
+@router.get("/repositories/{repo_id}/branches", response_model=List[str])
+@handle_git_error
+async def get_branches(repo_id: str):
+    """Get all branches in the repository"""
+    return git_service.get_branches(repo_id)
+
+
+@router.post("/repositories/{repo_id}/branches", response_model=GitOperationResponse)
+@handle_git_error
+async def create_branch(repo_id: str, request: CreateBranchRequest):
+    """Create a new branch"""
+    branch_name = git_service.create_branch(
+        repo_id=repo_id,
+        branch_name=request.branch_name,
+        base_branch=request.base_branch
+    )
+
+    return GitOperationResponse(
+        success=True,
+        message=f"Branch '{branch_name}' created successfully",
+        data={"branch_name": branch_name}
+    )
+
+
+@router.post("/repositories/{repo_id}/branches/{branch_name}/checkout", response_model=GitOperationResponse)
+@handle_git_error
+async def switch_branch(repo_id: str, branch_name: str):
+    """Switch to a different branch"""
+    git_service.switch_branch(repo_id, branch_name)
+
+    return GitOperationResponse(
+        success=True,
+        message=f"Switched to branch '{branch_name}'",
+        data={"branch_name": branch_name}
+    )
+
+
+@router.get("/repositories/{repo_id}/files/{file_path:path}")
+@handle_git_error
+async def read_file(repo_id: str, file_path: str, commit_hash: Optional[str] = None):
+    """Read file content from repository"""
+    content = git_service.read_file(repo_id, file_path, commit_hash=commit_hash)
+    return {"content": content}
+
+
+@router.post("/repositories/{repo_id}/files/{file_path:path}", response_model=GitOperationResponse)
+@handle_git_error
+async def write_file(repo_id: str, file_path: str, request: FileOperationRequest):
+    """Write file content to repository"""
+    git_service.write_file(repo_id, file_path, request.content)
+
+    return GitOperationResponse(
+        success=True,
+        message=f"File '{file_path}' written successfully"
     )
 
 
 @router.post("/repositories/{repo_id}/push", response_model=GitOperationResponse)
-async def push_changes(repo_id: str, push_data: dict):
+@handle_git_error
+async def push_changes(repo_id: str, request: PushPullRequest):
     """Push changes to remote repository"""
-    if repo_id not in repositories_db:
-        raise HTTPException(status_code=404, detail="Repository not found")
+    git_service.push(
+        repo_id=repo_id,
+        remote=request.remote,
+        branch=request.branch,
+        username=request.username,
+        password=request.password,
+        token=request.token
+    )
 
     return GitOperationResponse(
         success=True,
         message="Changes pushed successfully",
-        data={"branch": push_data.get("branch")}
+        data={"remote": request.remote, "branch": request.branch}
     )
 
 
 @router.post("/repositories/{repo_id}/pull", response_model=GitOperationResponse)
-async def pull_changes(repo_id: str, pull_data: dict):
+@handle_git_error
+async def pull_changes(repo_id: str, request: PushPullRequest):
     """Pull changes from remote repository"""
-    if repo_id not in repositories_db:
-        raise HTTPException(status_code=404, detail="Repository not found")
+    git_service.pull(
+        repo_id=repo_id,
+        remote=request.remote,
+        branch=request.branch,
+        username=request.username,
+        password=request.password,
+        token=request.token
+    )
 
     return GitOperationResponse(
         success=True,
         message="Changes pulled successfully",
-        data={"branch": pull_data.get("branch")}
+        data={"remote": request.remote, "branch": request.branch}
     )

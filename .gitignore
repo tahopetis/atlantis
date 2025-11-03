@@ -90,3 +90,10 @@ htmlcov/
 # Backend specific
 data/
 atlantis.db
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

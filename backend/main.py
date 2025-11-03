@@ -3,13 +3,23 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from app.core.config import settings
+from app.core.database import create_tables
 from app.api import api_router
+from app.middleware.security_headers import SecurityHeadersMiddleware, AuditLogMiddleware
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
     print("🌊 Atlantis API is starting up...")
+
+    # Create database tables
+    try:
+        create_tables()
+        print("✅ Database tables created successfully")
+    except Exception as e:
+        print(f"❌ Failed to create database tables: {e}")
+
     yield
     # Shutdown
     print("🌊 Atlantis API is shutting down...")
@@ -22,13 +32,17 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Add security middleware
+app.add_middleware(AuditLogMiddleware)
+app.add_middleware(SecurityHeadersMiddleware)
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.ALLOWED_HOSTS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=settings.allowed_hosts_list,
+    allow_credentials=settings.CORS_CREDENTIALS,
+    allow_methods=settings.CORS_METHODS,
+    allow_headers=settings.CORS_HEADERS,
 )
 
 # Include API routes
