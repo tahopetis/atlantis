@@ -55,7 +55,7 @@ def sample_file():
     file_mock.mermaid_code = "graph TD\n    A --> B"
     file_mock.diagram_data = None
     file_mock.tags = ["test", "diagram"]
-    file_mock.metadata = {}
+    file_mock.file_metadata = {}
     file_mock.user_id = 1
     file_mock.project_name = "Test Project"
     file_mock.folder_path = None
@@ -94,7 +94,7 @@ def sample_json_content():
             "edges": [{"from": "A", "to": "B"}]
         },
         "tags": ["test", "diagram"],
-        "metadata": {"created_by": "test"}
+        "file_metadata": {"created_by": "test"}
     })
 
 
@@ -392,7 +392,7 @@ class TestFileAPI:
         mock_version.file_path = "/path/to/version"
         mock_version.mermaid_code = "graph TD\n    A --> B"
         mock_version.diagram_data = {}
-        mock_version.metadata = {}
+        mock_version.file_metadata = {}
 
         mock_query = Mock()
         mock_query.filter.return_value.first.return_value = mock_version

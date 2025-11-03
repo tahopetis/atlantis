@@ -72,7 +72,7 @@ def sample_json_content():
             "edges": [{"from": "A", "to": "B"}]
         },
         "tags": ["test", "diagram"],
-        "metadata": {"created_by": "test"}
+        "file_metadata": {"created_by": "test"}
     })
 
 
@@ -347,7 +347,7 @@ class TestFileStorageService:
         mock_file.file_path = str(test_file_path)
         mock_file.file_type = FileType.MERMAID
         mock_file.diagram_data = None
-        mock_file.metadata = {}
+        mock_file.file_metadata = {}
 
         file_service.db.query.return_value.filter.return_value.first.return_value = mock_file
         file_service.db.commit = Mock()
@@ -483,7 +483,7 @@ class TestFileStorageService:
         mock_file.filename = "test.mmd"
         mock_file.mermaid_code = "graph TD\n    A --> B"
         mock_file.diagram_data = {}
-        mock_file.metadata = {}
+        mock_file.file_metadata = {}
         mock_file.versions = Mock()
         mock_file.versions.count.return_value = 0
 

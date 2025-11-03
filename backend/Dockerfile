@@ -9,6 +9,7 @@ ENV PYTHONPATH="/app"
 RUN apt-get update && apt-get install -y \
     git \
     curl \
+    libmagic1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv for fast package management

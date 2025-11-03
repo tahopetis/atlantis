@@ -5,6 +5,7 @@ from datetime import datetime
 import enum
 
 from ..core.database import Base
+from .user import User
 
 
 class FileType(enum.Enum):
@@ -33,7 +34,7 @@ class DiagramFile(Base):
     mermaid_code = Column(Text)  # Extracted Mermaid code (for .mmd files)
     diagram_data = Column(JSON)  # Complete diagram data (for .json files)
     tags = Column(JSON)  # Tags as JSON array
-    metadata = Column(JSON)  # Additional metadata as JSON
+    file_metadata = Column(JSON)  # Additional metadata as JSON
 
     # Foreign key to user (owner)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
@@ -90,7 +91,7 @@ class FileVersion(Base):
     # Content snapshots
     mermaid_code = Column(Text)
     diagram_data = Column(JSON)
-    metadata = Column(JSON)
+    file_metadata = Column(JSON)
 
     # Git integration
     git_commit = Column(String(40))  # Git commit hash for this version

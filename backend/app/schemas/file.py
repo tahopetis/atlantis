@@ -39,7 +39,7 @@ class FileCreate(FileBase):
     content: str = Field(..., description="File content")
     mermaid_code: Optional[str] = Field(None, description="Mermaid code (extracted from content)")
     diagram_data: Optional[Dict[str, Any]] = Field(None, description="Complete diagram data")
-    metadata: Optional[Dict[str, Any]] = Field(None, description="Additional metadata")
+    file_file_metadata: Optional[Dict[str, Any]] = Field(None, description="Additional metadata")
     git_repo_id: Optional[int] = Field(None, description="Associated Git repository ID")
     git_path: Optional[str] = Field(None, max_length=500, description="Path in Git repository")
     git_branch: Optional[str] = Field(None, max_length=100, description="Git branch")
@@ -81,7 +81,7 @@ class FileUpdate(BaseModel):
     content: Optional[str] = None
     mermaid_code: Optional[str] = None
     diagram_data: Optional[Dict[str, Any]] = None
-    metadata: Optional[Dict[str, Any]] = None
+    file_file_metadata: Optional[Dict[str, Any]] = None
 
 
 class FileResponse(BaseModel):
@@ -96,7 +96,7 @@ class FileResponse(BaseModel):
     mermaid_code: Optional[str]
     diagram_data: Optional[Dict[str, Any]]
     tags: List[str]
-    metadata: Optional[Dict[str, Any]]
+    file_metadata: Optional[Dict[str, Any]]
     user_id: int
     project_name: Optional[str]
     folder_path: Optional[str]
@@ -156,7 +156,7 @@ class FileVersionCreate(BaseModel):
     content: str = Field(..., description="File content for this version")
     mermaid_code: Optional[str] = None
     diagram_data: Optional[Dict[str, Any]] = None
-    metadata: Optional[Dict[str, Any]] = None
+    file_metadata: Optional[Dict[str, Any]] = None
 
 
 class FileVersionResponse(BaseModel):
@@ -170,7 +170,7 @@ class FileVersionResponse(BaseModel):
     file_hash: str
     mermaid_code: Optional[str]
     diagram_data: Optional[Dict[str, Any]]
-    metadata: Optional[Dict[str, Any]]
+    file_metadata: Optional[Dict[str, Any]]
     git_commit: Optional[str]
     git_branch: Optional[str]
     created_by: int
@@ -253,8 +253,8 @@ class FileSearchQuery(BaseModel):
     is_public: Optional[bool] = None
     date_from: Optional[datetime] = None
     date_to: Optional[datetime] = None
-    sort_by: str = Field(default="created_at", regex="^(created_at|updated_at|display_name|file_size)$")
-    sort_order: str = Field(default="desc", regex="^(asc|desc)$")
+    sort_by: str = Field(default="created_at", pattern="^(created_at|updated_at|display_name|file_size)$")
+    sort_order: str = Field(default="desc", pattern="^(asc|desc)$")
     page: int = Field(default=1, ge=1)
     per_page: int = Field(default=20, ge=1, le=100)
 

@@ -19,7 +19,8 @@ dependencies = [
     "sqlalchemy>=2.0.23",
     "alembic>=1.12.1",
     "fastapi-users>=12.1.2",
-    "fastapi-users[sqlalchemy]>=12.1.2"
+    "fastapi-users[sqlalchemy]>=12.1.2",
+    "python-magic>=0.4.27"
 ]
 requires-python = ">=3.11"
 license = {text = "MIT"}

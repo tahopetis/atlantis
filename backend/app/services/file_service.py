@@ -125,7 +125,7 @@ class FileStorageService:
                 mermaid_code=file_data.mermaid_code or file_data.content if file_type_enum == FileType.MERMAID else None,
                 diagram_data=file_data.diagram_data,
                 tags=file_data.tags or [],
-                metadata=file_data.metadata or {},
+                file_metadata=file_data.file_metadata or {},
                 user_id=user_id,
                 project_name=file_data.project_name,
                 folder_path=file_data.folder_path,
@@ -194,7 +194,7 @@ class FileStorageService:
                 file_hash=self._calculate_file_hash(content),
                 mermaid_code=file_record.mermaid_code,
                 diagram_data=file_record.diagram_data,
-                metadata=file_record.metadata,
+                file_metadata=file_record.file_metadata,
                 created_by=user_id
             )
 
@@ -317,7 +317,7 @@ class FileStorageService:
                         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                         detail=f"Failed to update file content: {str(e)}"
                     )
-            elif field in ['diagram_data', 'metadata']:
+            elif field in ['diagram_data', 'file_metadata']:
                 setattr(file_record, field, value)
             else:
                 setattr(file_record, field, value)

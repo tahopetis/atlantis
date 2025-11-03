@@ -71,7 +71,7 @@ async def list_files(
     project_name: Optional[str] = Query(None, description="Filter by project name"),
     is_public: Optional[bool] = Query(None, description="Filter by public status"),
     sort_by: str = Query("created_at", description="Sort field"),
-    sort_order: str = Query("desc", regex="^(asc|desc)$", description="Sort order"),
+    sort_order: str = Query("desc", pattern="^(asc|desc)$", description="Sort order"),
     date_from: Optional[datetime] = Query(None, description="Filter by date from"),
     date_to: Optional[datetime] = Query(None, description="Filter by date to"),
     current_user: User = Depends(get_current_active_user),
@@ -330,7 +330,7 @@ async def restore_file_version(
             content=content,
             mermaid_code=version.mermaid_code,
             diagram_data=version.diagram_data,
-            metadata=version.metadata
+            file_metadata=version.file_metadata
         )
 
         updated_file = file_service.update_file(file_id, current_user.id, file_data)
@@ -449,7 +449,7 @@ async def import_file(
 @router.get("/{file_id}/export")
 async def export_file(
     file_id: int,
-    format: str = Query("json", regex="^(json|mmd|md)$", description="Export format"),
+    format: str = Query("json", pattern="^(json|mmd|md)$", description="Export format"),
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db)
 ):
@@ -469,7 +469,7 @@ async def export_file(
                 "mermaid_code": db_file.mermaid_code,
                 "diagram_data": db_file.diagram_data,
                 "tags": db_file.tags,
-                "metadata": db_file.metadata,
+                "file_metadata": db_file.file_metadata,
                 "created_at": db_file.created_at.isoformat(),
                 "updated_at": db_file.updated_at.isoformat()
             }

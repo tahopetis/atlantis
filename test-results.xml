@@ -1,0 +1,181 @@
+<testsuites id="" name="" tests="3" failures="3" skipped="0" errors="0" time="5.49967">
+<testsuite name="working-selectors-test.spec.ts" timestamp="2025-11-03T07:48:15.118Z" hostname="chromium" tests="3" failures="3" skipped="0" time="4.17" errors="0">
+<testcase name="Working Selectors Validation › Validate all working selectors from discovery test" classname="working-selectors-test.spec.ts" time="1.451">
+<failure message="working-selectors-test.spec.ts:22:3 Validate all working selectors from discovery test" type="FAILURE">
+<![CDATA[  [chromium] › working-selectors-test.spec.ts:22:3 › Working Selectors Validation › Validate all working selectors from discovery test 
+
+    Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:
+        1) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-git-branch h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'main' })
+        2) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-save h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'Save' })
+        3) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-download h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'Export' })
+        4) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-settings h-4 w-4">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })
+        5) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-plus h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'New Diagram' })
+        6) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-folder h-4 w-4">…</svg> aka getByRole('img').nth(5)
+        7) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('.lucide.lucide-file-text').first()
+        8) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('div:nth-child(2) > .lucide')
+        9) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('div:nth-child(3) > .lucide')
+        10) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-git-branch h-4 w-4">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')
+        ...
+
+    Call log:
+      - waiting for locator('svg') to be visible
+
+
+       at pages/BasePage.ts:42
+
+      40 |    */
+      41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {
+    > 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })
+         |                                              ^
+      43 |   }
+      44 |
+      45 |   /**
+        at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)
+        at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)
+        at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:27:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+🧪 VALIDATING WORKING SELECTORS
+
+Waiting for editor initialization with working selectors...
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-40c3b-lectors-from-discovery-test-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Working Selectors Validation › Test comprehensive functionality with fixed selectors" classname="working-selectors-test.spec.ts" time="1.391">
+<failure message="working-selectors-test.spec.ts:152:3 Test comprehensive functionality with fixed selectors" type="FAILURE">
+<![CDATA[  [chromium] › working-selectors-test.spec.ts:152:3 › Working Selectors Validation › Test comprehensive functionality with fixed selectors 
+
+    Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:
+        1) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-git-branch h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'main' })
+        2) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-save h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'Save' })
+        3) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-download h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'Export' })
+        4) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-settings h-4 w-4">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })
+        5) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-plus h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'New Diagram' })
+        6) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-folder h-4 w-4">…</svg> aka getByRole('img').nth(5)
+        7) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('.lucide.lucide-file-text').first()
+        8) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('div:nth-child(2) > .lucide')
+        9) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('div:nth-child(3) > .lucide')
+        10) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-git-branch h-4 w-4">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')
+        ...
+
+    Call log:
+      - waiting for locator('svg') to be visible
+
+
+       at pages/BasePage.ts:42
+
+      40 |    */
+      41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {
+    > 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })
+         |                                              ^
+      43 |   }
+      44 |
+      45 |   /**
+        at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)
+        at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)
+        at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:156:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+🔧 COMPREHENSIVE FUNCTIONALITY TEST
+
+Waiting for editor initialization with working selectors...
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-c2d80-nality-with-fixed-selectors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Working Selectors Validation › Compare old vs new selectors" classname="working-selectors-test.spec.ts" time="1.328">
+<failure message="working-selectors-test.spec.ts:231:3 Compare old vs new selectors" type="FAILURE">
+<![CDATA[  [chromium] › working-selectors-test.spec.ts:231:3 › Working Selectors Validation › Compare old vs new selectors 
+
+    Error: locator.waitFor: Error: strict mode violation: locator('svg') resolved to 21 elements:
+        1) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-git-branch h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'main' })
+        2) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-save h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'Save' })
+        3) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-download h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'Export' })
+        4) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-settings h-4 w-4">…</svg> aka getByRole('banner').getByRole('button').filter({ hasText: /^$/ })
+        5) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-plus h-4 w-4 mr-2">…</svg> aka getByRole('button', { name: 'New Diagram' })
+        6) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-folder h-4 w-4">…</svg> aka getByRole('img').nth(5)
+        7) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('.lucide.lucide-file-text').first()
+        8) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('div:nth-child(2) > .lucide')
+        9) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-text h-4 w-4">…</svg> aka locator('div:nth-child(3) > .lucide')
+        10) <svg width="24" height="24" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class="lucide lucide-git-branch h-4 w-4">…</svg> aka locator('div:nth-child(3) > .flex > .lucide')
+        ...
+
+    Call log:
+      - waiting for locator('svg') to be visible
+
+
+       at pages/BasePage.ts:42
+
+      40 |    */
+      41 |   async waitForElement(selector: string, timeout: number = 10000): Promise<Locator> {
+    > 42 |     return await this.page.locator(selector).waitFor({ state: 'visible', timeout })
+         |                                              ^
+      43 |   }
+      44 |
+      45 |   /**
+        at EditorPageFixed.waitForElement (/home/syam/dev/atlantis/tests/e2e/pages/BasePage.ts:42:46)
+        at EditorPageFixed.waitForEditorInitialization (/home/syam/dev/atlantis/tests/e2e/pages/EditorPage-FIXED.ts:63:16)
+        at /home/syam/dev/atlantis/tests/e2e/working-selectors-test.spec.ts:235:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../../test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../../test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+🔄 COMPARING OLD VS NEW SELECTORS
+
+Waiting for editor initialization with working selectors...
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/working-selectors-test-Wor-c6634-ompare-old-vs-new-selectors-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
